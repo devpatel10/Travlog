@@ -14,7 +14,8 @@ public interface ApiInterface {
 
     @GET("associate.php")
     Call<User> performUpdate(@Query("username") String username, @Query("relate") String relate);
-
+    @GET("deletetrip.php")
+    Call<User> deleteTrip(@Query("tripid") int tripid);
     @GET("dissociate.php")
     Call<User> deleteRelation(@Query("username") String username);
     @GET("getType.php")
@@ -23,5 +24,6 @@ public interface ApiInterface {
     Call<User> getLatLng(@Query("username") String username);
     @GET("updateLatLng.php")
     Call<User> updateLatLng(@Query("username") String username, @Query("latLng") String latLng);
-
+    @GET("showtrip.php")
+    Call<User> showTrip(@Query("username") String username);
 }

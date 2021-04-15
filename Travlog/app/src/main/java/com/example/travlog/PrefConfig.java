@@ -22,6 +22,16 @@ public class PrefConfig
         editor.putBoolean(context.getString(R.string.pref_login_status),status);
         editor.commit();
     }
+    public void writeTripid(String tripid)
+    {
+        SharedPreferences.Editor editor =sharedPreferences.edit();
+        editor.putString(context.getString(R.string.pref_tripid), tripid);
+        editor.commit();
+    }
+    public String readTripid()
+    {
+        return sharedPreferences.getString(context.getString(R.string.pref_tripid),"1");
+    }
     public boolean readLoginStatus()
     {
         return sharedPreferences.getBoolean(context.getString(R.string.pref_login_status),false);

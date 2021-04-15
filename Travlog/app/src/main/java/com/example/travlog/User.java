@@ -2,13 +2,16 @@ package com.example.travlog;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 import retrofit2.Response;
 
 public class User {
     @SerializedName("response")
-    private String response;
+    public String response;
     @SerializedName("name")
-    private String name;
+    public String name;
+    public ArrayList<ArrayList<String>> trips;
     public String getResponse()
     {
         return response;

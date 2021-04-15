@@ -2,7 +2,10 @@ package com.example.travlog;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
+import android.view.LayoutInflater;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.travlog.ui.home.HomeFragment;
@@ -53,20 +56,6 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
     public void performLogIn(String name,String username) {
         prefConfig.writeName(name);
         prefConfig.writeUsername(username);
-        final String[] type = {new String()};
-        Call<User> call=MainActivity.apiInterface.getType(username);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                type[0] =response.body().getResponse();
-            }
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                prefConfig.displayToast("Error");
-            }
-        });
-
-        prefConfig.writeType(type[0]);
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
