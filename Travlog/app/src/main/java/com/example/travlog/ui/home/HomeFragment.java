@@ -105,6 +105,8 @@ public class HomeFragment extends Fragment {
                             transaction.replace(R.id.nav_host_fragment, new DetailsFragment() ); // give your fragment container id in first parameter
                             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                             transaction.commit();
+
+
                         }
                     });
 
