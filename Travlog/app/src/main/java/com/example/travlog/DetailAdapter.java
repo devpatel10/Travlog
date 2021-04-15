@@ -27,8 +27,8 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailAdap
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
-        void onDeleteClick(int position);
-        void onDetailsClick(int position);
+        void transportClick(int position);
+        void hotelClick(int position);
     }
     public void setOnItemClickListener(OnItemClickListener listener) { mListener=listener;}
     public static class DetailAdapterHolder extends RecyclerView.ViewHolder{
@@ -48,34 +48,34 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailAdap
             s8=itemView.findViewById(R.id.s8);
             s9=itemView.findViewById(R.id.s9);
 
-           /* DetailBtn.setOnClickListener(new View.OnClickListener() {
+            s8.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
-                    if(listener!=null)
+                    if(listener!=null )
                     {
                         int position=getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION)
+                        if(position!=RecyclerView.NO_POSITION && position==0)
                         {
-                            listener.onDetailsClick(position);
+                            listener.hotelClick(position);
                         }
                     }
                 }
             });
-            DeleteBtn.setOnClickListener(new View.OnClickListener() {
+            s9.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(listener!=null)
                     {
                         int position=getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION)
+                        if(position!=RecyclerView.NO_POSITION && position==0)
                         {
-                            listener.onDeleteClick(position);
+                            listener.transportClick(position);
                         }
                     }
 
                 }
-            });*/
+            });
         }
     }
 
@@ -100,24 +100,31 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailAdap
         {
             holder.mImageView.setImageResource(R.drawable.hangout);
             holder.s1.setText(currItem.get(0));
-            holder.s2.setText("Description : "+currItem.get(1));
+            holder.s2.setText(currItem.get(1));
             if(currItem.get(2)!=null)
-            { holder.s4.setText("Drive Link"+currItem.get(2));}
+            {
+                holder.s3.setText("    Total Expenses: "+currItem.get(5));
+                holder.s4.setText("Drive Link"+currItem.get(2));}
+            else{
+                holder.s4.setText("Total Expenses: "+currItem.get(5));
+            }
             holder.s6.setText("Start Date : "+currItem.get(3));
-            holder.s8.setText("End Date : " +currItem.get(4));
-            holder.s3.setText("   Cost : "+currItem.get(5));
+            holder.s7.setText("End Date : " +currItem.get(4));
+
+              holder.s8.setText("Add Hotel Booking   ");
+                holder.s9.setText("   Add Transportation");
 
         }
-        else if(currItem.size()==8){
+        else if(currItem.size()==5){
             holder.mImageView.setImageResource(R.drawable.monuments);
             holder.s1.setText(currItem.get(0));
-            holder.s2.setText(currItem.get(1));
-            holder.s3.setText( currItem.get(2));
-            holder.s4.setText(currItem.get(3));
-            holder.s5.setText(currItem.get(4));
-            holder.s6.setText(currItem.get(5));
-            holder.s7.setText(currItem.get(6));
-            holder.s8.setText(currItem.get(7));
+            holder.s2.setText("Address  : "+currItem.get(1));
+            holder.s4.setText("Cost  : "+ currItem.get(4));
+            holder.s6.setText("Checkin  : "+currItem.get(2));
+           // holder.s5.setText(currItem.get(4));
+            holder.s8.setText("Checkout  : "+currItem.get(3));
+         //   holder.s7.setText(currItem.get(6));
+          //  holder.s8.setText(currItem.get(7));*/
             holder.s9.setText("");
         }
         else{

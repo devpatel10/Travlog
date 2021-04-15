@@ -21,10 +21,6 @@ if($start_date>$end_date)
 {
 	$status="Trip cannot be added as end date cannot be before start date!";
 }
-else if(date("Y/m/d")>$end_date)
-{
-	$status="Trip cannot be added as it already ended!";
-}
 else
 {
 	$sql="INSERT INTO trips(customer_id, title, description, drive_link, start_date, end_date, status)  VALUES ('$customer_id', '$title', '$description', '$drive_link', '$start_date', '$end_date', '$status_table')";

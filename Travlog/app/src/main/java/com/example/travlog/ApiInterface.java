@@ -16,6 +16,13 @@ public interface ApiInterface {
     Call<User> performUpdate(@Query("username") String username, @Query("relate") String relate);
     @GET("addtrips.php")
     Call<User> addTrip(@Query("username") String username, @Query("title") String title, @Query("description") String description, @Query("drive_link") String drivelink, @Query("start_date") String sdate, @Query("end_date") String edate);
+    @GET("addtransport.php")
+    Call<User> addTransport(@Query("trip_id") String tripid, @Query("type") String type, @Query("trans_name") String tname, @Query("from") String from, @Query("to") String to, @Query("cost") String cost,@Query("departure") String sdate, @Query("arrival") String edate);
+    @GET("hotellist.php")
+    Call<User> hotelList();
+    @GET("addhotel.php")
+    Call<User> addHotel(@Query("trip_id") String tripid, @Query("hotel_name") String hotelname, @Query("check_in") String tname, @Query("check_out") String from, @Query("cost") String cost);
+
     @GET("deletetrip.php")
     Call<User> deleteTrip(@Query("tripid") int tripid);
     @GET("dissociate.php")

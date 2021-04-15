@@ -51,7 +51,7 @@ if(mysqli_num_rows($result)>0)
 		}
 		if($j < count($row2))
 		{
-			if (s=="" or $s>$row2[$j][2] )
+			if ($s=="" or $s>$row2[$j][2] )
 			{
 				$idx = 1;
 			}

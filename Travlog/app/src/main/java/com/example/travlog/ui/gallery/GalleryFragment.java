@@ -124,6 +124,7 @@ public class GalleryFragment extends Fragment {
                     MainActivity.prefConfig.displayToast("Registration Success...");
                     Intent intent = new Intent(GalleryFragment.super.getContext(), HomeActivity.class);
                     startActivity(intent);
+
                 }
                 else
                 {
