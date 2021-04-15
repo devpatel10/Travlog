@@ -78,7 +78,7 @@ public class LoginFragment extends Fragment {
                 if(response.body().getResponse().equals("ok"))
                 {
                    com.example.travlog.MainActivity.prefConfig.writeLoginStatus(true);
-                    prefConfig.displayToast("ok");
+
                     loginFormActivityListener.performLogIn(response.body().getName(),username);
                 }
                 else if(response.body().getResponse().equals("failed"))

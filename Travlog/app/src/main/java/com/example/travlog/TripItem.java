@@ -15,7 +15,7 @@ public class TripItem {
         return mImageResource;
     }
     public int getTripId(){
-        return tripid;
+        return (tripid);
     }
     public String getText1() {
         return mText1;

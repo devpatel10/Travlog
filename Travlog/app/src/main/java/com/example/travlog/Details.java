@@ -3,6 +3,7 @@ package com.example.travlog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,11 +14,13 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.travlog.ui.activity.DetailsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 public class Details extends AppCompatActivity {
+
 
 
     private TextView tv;
@@ -29,6 +32,13 @@ public class Details extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+        Fragment fragment = new DetailsFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new DetailsFragment()).commit();
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

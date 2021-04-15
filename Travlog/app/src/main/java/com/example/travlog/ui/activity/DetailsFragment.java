@@ -1,6 +1,5 @@
-package com.example.travlog.activity;
+package com.example.travlog.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.travlog.Details;
-import com.example.travlog.HomeActivity;
+import com.example.travlog.DetailAdapter;
+import com.example.travlog.DetailItem;
 import com.example.travlog.MainActivity;
 import com.example.travlog.R;
-import com.example.travlog.TripAdapter;
 import com.example.travlog.TripItem;
 import com.example.travlog.User;
 
@@ -29,41 +27,40 @@ import retrofit2.Response;
 
 import static com.example.travlog.MainActivity.prefConfig;
 
-public class HomeFragment extends Fragment {
+public class DetailsFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    private TripAdapter mAdapter;
+    private DetailAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private HomeViewModel homeViewModel;
+    private DetailsViewModel homeViewModel;
     private ArrayList<ArrayList<String>>[] triplist = new ArrayList[]{new ArrayList<ArrayList<String>>(1)};
     private Button LoginBn,DeleteBtn;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+                ViewModelProviders.of(this).get(DetailsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        final ArrayList<TripItem> TripList = new ArrayList<TripItem>(0);
+       // final ArrayList<DetailsItem> TripList = new ArrayList<DetailItem>(0);
         mLayoutManager = new LinearLayoutManager(super.getContext());
 
         mLayoutManager = new LinearLayoutManager(super.getContext());
-        Call<User> call=MainActivity.apiInterface.showTrip(prefConfig.readUsername());
+
+        Call<User> call=MainActivity.apiInterface.showDetails(prefConfig.readTripid());
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.body().getResponse().equals("ok"))
                 {
-                    MainActivity.prefConfig.writeLoginStatus(true);
+
                     //prefConfig.displayToast("ok");
 
-                    triplist[0] =response.body().trips;
-                    TripList.clear();
-                    for (int i = 0; i< triplist[0].size(); i++) {
-                        TripItem t=new TripItem(Integer.parseInt(triplist[0].get(i).get(0)),R.drawable.ic_android, triplist[0].get(i).get(1), triplist[0].get(i).get(2));
-                        TripList.add(t);
-                    }
-                    mRecyclerView=root.findViewById(R.id.recyclerview);
+                    triplist[0] =response.body().event_list;
+                    //prefConfig.displayToast(""+response.body().event_list);
+
+
+                    mRecyclerView=root.findViewById(R.id.recyclerview1);
                     mRecyclerView.setHasFixedSize(true);
-                    mAdapter=new TripAdapter(TripList);
+                    mAdapter=new DetailAdapter(triplist[0]);
                     mRecyclerView.setLayoutManager(mLayoutManager);
                     mRecyclerView.setAdapter(mAdapter);
 

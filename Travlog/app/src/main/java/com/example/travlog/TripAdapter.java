@@ -51,6 +51,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripAdapterHol
                     if(listener!=null)
                     {
                         int position=getAdapterPosition();
+
                         if(position!=RecyclerView.NO_POSITION)
                         {
                             listener.onDetailsClick(position);
@@ -92,7 +93,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripAdapterHol
     @Override
     public void onBindViewHolder(@NonNull TripAdapterHolder holder, int position) {
         TripItem currItem = mExampleList.get(position);
-
         holder.mTextView1.setText(currItem.getText1());
         holder.mTextView2.setText(currItem.getText2());
 

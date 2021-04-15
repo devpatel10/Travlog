@@ -8,5 +8,17 @@
             android:id="@+id/nav_home"
             android:icon="@android:drawable/ic_dialog_dialer"
             android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Add Trip" />
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/icon_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_delete"
+            android:title="@string/menu_logout" />
     </group>
 </menu>

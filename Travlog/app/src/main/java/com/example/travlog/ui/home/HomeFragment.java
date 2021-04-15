@@ -1,32 +1,27 @@
 package com.example.travlog.ui.home;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.travlog.Details;
 import com.example.travlog.HomeActivity;
 import com.example.travlog.MainActivity;
 import com.example.travlog.R;
 import com.example.travlog.TripAdapter;
 import com.example.travlog.TripItem;
 import com.example.travlog.User;
-import com.google.android.material.navigation.NavigationView;
+import com.example.travlog.ui.activity.DetailsFragment;
 
 import java.util.ArrayList;
 
@@ -59,7 +54,7 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.body().getResponse().equals("ok"))
                 {
-                    com.example.travlog.MainActivity.prefConfig.writeLoginStatus(true);
+                    //com.example.travlog.MainActivity.prefConfig.writeLoginStatus(true);
                     //prefConfig.displayToast("ok");
 
                     triplist[0] =response.body().trips;
@@ -104,9 +99,12 @@ public class HomeFragment extends Fragment {
 
                         @Override
                         public void onDetailsClick(int position) {
-
-                            Intent intent = new Intent(HomeFragment.super.getContext(), Details.class);
-                            startActivity(intent);
+                            MainActivity.prefConfig.writeTripid(""+ TripList.get(position).getTripId());
+                            Fragment someFragment = new DetailsFragment();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.nav_host_fragment, new DetailsFragment() ); // give your fragment container id in first parameter
+                            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                            transaction.commit();
                         }
                     });
 

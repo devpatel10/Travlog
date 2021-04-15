@@ -34,11 +34,10 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
             }
             if(prefConfig.readLoginStatus())
             {
-                prefConfig.writeLoginStatus(false);
-                prefConfig.displayToast("Logged In");
+                //prefConfig.writeLoginStatus(false);
+                prefConfig.displayToast("Log In Successful");
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
-                prefConfig.displayToast("Logged In");
             }
             else
             {
